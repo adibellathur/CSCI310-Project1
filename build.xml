@@ -1,6 +1,6 @@
-<project name="Project1" default="compile" basedir=".">
+<project name="Project1" default="run" basedir=".">
 	<description>
-		A simpl project to get familiar with ant, git, and junit
+		A simple project to get familiar with ant, git, and junit
 	</description>
 	
 	<!-- global properties for this build file -->
@@ -17,6 +17,13 @@
 	<!-- Compile the java code in src dir into build dir -->
 	<target name="compile" depends="init" description="compile java sources">
 		<javac srcdir="${source.dir}" destdir="${build.dir}" />
+	</target>
+
+	<!-- Run the compiled java code in the build dir -->
+	<target name="run" depends="compile" description="generate documentation">
+		<java classname="csci310.bellathu.project1.Main">
+			<classpath path="${build.dir}"/>
+		</java>
 	</target>
 	
 	<!-- Generate javadocs for current project into docs dir -->
