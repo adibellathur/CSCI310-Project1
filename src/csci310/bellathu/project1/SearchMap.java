@@ -10,14 +10,16 @@ public class SearchMap {
         this.inputFile = inputFile;
     }
 
-    public String readFile() throws IOException {
+    public FlightMatrix readFile() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(new File(inputFile)));
         String line;
         String total = "";
+        String startingNode = reader.readLine();
+        FlightMatrix matrix = new FlightMatrix(startingNode);
         while((line = reader.readLine()) != null) {
             total += line + "\n";
         }
-        return total;
+        return matrix;
     }
 
     public static void main(String[] args) {

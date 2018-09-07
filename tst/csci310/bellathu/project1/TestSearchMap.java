@@ -15,7 +15,7 @@ public class TestSearchMap {
     @Test
     public void TestReadFileWithRealInput() throws IOException {
         SearchMap map = new SearchMap(TEST_INPUT_FILE);
-        assertTrue(map.readFile().equals(TEST_INPUT_STRING));
+        assertTrue(map.readFile() instanceof FlightMatrix);
     }
 
     @Test(expected = IOException.class)
