@@ -7,7 +7,7 @@
 	<property name="source.dir" location="src"/>
     <property name="test.dir" location="tst"/>
 	<property name="build.dir" location="bin"/>
-    <property name="lib.dir" location="lib"/>
+    <property name="lib.dir" location="dist"/>
 	<property name="doc.dir" location="doc"/>
 
 	<!-- set up some directories used by this project -->
@@ -27,12 +27,12 @@
 	
 	<!-- Compile the java code in src dir into build dir -->
 	<target name="compile" depends="init" description="compile java sources">
-		<javac srcdir="${source.dir}" destdir="${build.dir}/src" />
+		<javac srcdir="${source.dir}" destdir="${build.dir}/src" includeantruntime="true"/>
 	</target>
 
 	<!-- Run the compiled java code in the build dir -->
 	<target name="run" depends="compile, test" description="generate documentation">
-		<java classname="csci310.bellathu.project1.Main">
+		<java classname="csci310.bellathu.project1.SearchMap">
             <classpath>
                 <path refid="classpath"/>
             </classpath>
@@ -40,7 +40,7 @@
 	</target>
 
     <target name="test-compile" depends="compile">
-        <javac srcdir="${test.dir}" destdir="${build.dir}/tst">
+        <javac srcdir="${test.dir}" destdir="${build.dir}/tst" includeantruntime="true">
             <classpath refid="classpath"/>
         </javac>
     </target>
@@ -52,7 +52,7 @@
             </classpath>
             <formatter type="brief" usefile="false" />
             <batchtest>
-                <fileset dir="${test.dir}" includes="**/*Test.java" />
+                <fileset dir="${test.dir}" includes="**/*.java" />
             </batchtest>
         </junit>
     </target>
