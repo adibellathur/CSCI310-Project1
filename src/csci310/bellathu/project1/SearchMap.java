@@ -12,12 +12,17 @@ public class SearchMap {
 
     public FlightMatrix readFile() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(new File(inputFile)));
-        String line;
-        String total = "";
         String startingNode = reader.readLine();
         FlightMatrix matrix = new FlightMatrix(startingNode);
+
+        String line;
         while((line = reader.readLine()) != null) {
-            total += line + "\n";
+            String[] arr = line.split(" ");
+            if(arr.length == 3) {
+                System.out.println(arr[0] + arr[1] + arr[2]);
+            } else {
+                System.out.println("ERROR");
+            }
         }
         return matrix;
     }
