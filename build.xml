@@ -7,7 +7,11 @@
 	<property name="source.dir" location="src"/>
     <property name="test.dir" location="tst"/>
 	<property name="build.dir" location="bin"/>
+<<<<<<< HEAD
     <property name="lib.dir" location="dist"/>
+=======
+    <property name="lib.dir" location="lib"/>
+>>>>>>> 2c024c2fb6dbcc8dbbd54fcc7fc5221f9a1a711a
 	<property name="doc.dir" location="doc"/>
 
 	<!-- set up some directories used by this project -->
@@ -27,12 +31,20 @@
 	
 	<!-- Compile the java code in src dir into build dir -->
 	<target name="compile" depends="init" description="compile java sources">
+<<<<<<< HEAD
 		<javac srcdir="${source.dir}" destdir="${build.dir}/src" includeantruntime="true"/>
+=======
+		<javac srcdir="${source.dir}" destdir="${build.dir}/src" />
+>>>>>>> 2c024c2fb6dbcc8dbbd54fcc7fc5221f9a1a711a
 	</target>
 
 	<!-- Run the compiled java code in the build dir -->
 	<target name="run" depends="compile, test" description="generate documentation">
+<<<<<<< HEAD
 		<java classname="csci310.bellathu.project1.SearchMap">
+=======
+		<java classname="csci310.bellathu.project1.Main">
+>>>>>>> 2c024c2fb6dbcc8dbbd54fcc7fc5221f9a1a711a
             <classpath>
                 <path refid="classpath"/>
             </classpath>
@@ -40,7 +52,11 @@
 	</target>
 
     <target name="test-compile" depends="compile">
+<<<<<<< HEAD
         <javac srcdir="${test.dir}" destdir="${build.dir}/tst" includeantruntime="true">
+=======
+        <javac srcdir="${test.dir}" destdir="${build.dir}/tst">
+>>>>>>> 2c024c2fb6dbcc8dbbd54fcc7fc5221f9a1a711a
             <classpath refid="classpath"/>
         </javac>
     </target>
