@@ -10,7 +10,7 @@ public class SearchMap {
         this.inputFile = inputFile;
     }
 
-    public FlightMatrix readFile() throws IOException {
+    public FlightMatrix readFile() throws IOException, NumberFormatException {
         BufferedReader reader = new BufferedReader(new FileReader(new File(inputFile)));
         String startingNode = reader.readLine();
         FlightMatrix matrix = new FlightMatrix(startingNode);
@@ -19,9 +19,10 @@ public class SearchMap {
         while((line = reader.readLine()) != null) {
             String[] arr = line.split(" ");
             if(arr.length == 3) {
-                System.out.println(arr[0] + arr[1] + arr[2]);
+                matrix.addPath(arr[0], arr[1], Integer.parseInt(arr[2]));
             } else {
                 System.out.println("ERROR");
+                throw (new IOException());
             }
         }
         return matrix;
@@ -29,9 +30,12 @@ public class SearchMap {
 
     public static void main(String[] args) {
         SearchMap program = new SearchMap("inputfile.txt");
+        FlightMatrix matrix;
         try {
-            System.out.println(program.readFile());
-        } catch (IOException e) {
+            matrix = program.readFile();
+            System.out.println(matrix);
+        } catch (IOException | NumberFormatException e) {
+            System.out.println("Invalid input file. Please use valid inputfile.txt");
             e.printStackTrace();
         }
     }

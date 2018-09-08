@@ -1,4 +1,4 @@
-this
-is
-a
-test
+P
+P W 200
+P R 300
+R X 200

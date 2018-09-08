@@ -18,4 +18,20 @@ public class FlightMatrix {
         return startingNode;
     }
 
+    public void addPath(String startNode, String endNode, int price) {
+        matrix.putIfAbsent(startNode, new HashMap<>());
+        matrix.get(startNode).put(endNode, price);
+    }
+
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        matrix.entrySet().stream().forEach(set -> {
+            builder.append(set.getKey() + ":\n");
+            set.getValue().entrySet().stream().forEach(innerset ->
+               builder.append("\t" + innerset.getKey() + " (" + innerset.getValue() + ")\n")
+            );
+        });
+        return builder.toString();
+    }
+
 }
