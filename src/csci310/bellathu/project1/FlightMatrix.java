@@ -12,6 +12,7 @@ public class FlightMatrix {
     public FlightMatrix(String startingNode) {
         this.matrix = new HashMap<>();
         this.startingNode = startingNode;
+        this.matrix.putIfAbsent(startingNode, new HashMap<>());
     }
 
     public String getStartingNode() {
