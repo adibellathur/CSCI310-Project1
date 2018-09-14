@@ -35,4 +35,11 @@ public class FlightMatrix {
         return builder.toString();
     }
 
+    public Map<String, Integer> getAdjacentCities(String currCity) {
+        if(matrix.get(currCity) == null) {
+            return new HashMap<>();
+        }
+        return matrix.get(currCity);
+    }
+
 }
