@@ -7,7 +7,8 @@
 	<property name="source.dir" location="src"/>
     <property name="test.dir" location="tst"/>
 	<property name="build.dir" location="bin"/>
-    <property name="lib.dir" location="dist"/>
+    <property name="lib.dir" location="lib"/>
+    <property name="jar.dir" location="dist"/>
 	<property name="doc.dir" location="doc"/>
 
 	<path id="classpath">
@@ -22,23 +23,27 @@
 		<mkdir dir="${build.dir}" />
         <mkdir dir="${build.dir}/src" />
         <mkdir dir="${build.dir}/tst" />
-		<mkdir dir="${doc.dir}" />
+        <mkdir dir="${jar.dir}" />
+        <mkdir dir="${doc.dir}" />
 	</target>
 
-	<!-- Compile the java code in src dir into build dir -->
+	<!-- Compile the java code in src dir into build/src dir -->
 	<target name="compile" depends="init" description="compile java sources">
 		<javac srcdir="${source.dir}" destdir="${build.dir}/src" includeantruntime="true"/>
 	</target>
 
-	<!-- Run the compiled java code in the build dir -->
-	<target name="run" depends="compile, test" description="generate documentation">
+	<!-- Run the compiled java code in the build/src dir -->
+	<target name="run" depends="test, jar, doc" description="generate documentation">
 		<java classname="csci310.bellathu.project1.SearchMap">
             <classpath>
                 <path refid="classpath"/>
             </classpath>
+            <arg value="inputfile.txt"/>
+            <arg value="outputfile.txt"/>
 		</java>
 	</target>
 
+    <!-- Compile the junit test code in tst dir into build/tst dir -->
     <target name="test-compile" depends="compile">
         <javac srcdir="${test.dir}" destdir="${build.dir}/tst" includeantruntime="true">
             <classpath refid="classpath"/>
@@ -56,6 +61,14 @@
             </batchtest>
         </junit>
     </target>
+
+    <target name="jar" depends="compile">
+        <jar destfile="${jar.dir}/HelloWorld.jar" basedir="${build.dir}/src">
+            <manifest>
+                <attribute name="Main-Class" value="csci310.bellathu.project1.SearchMap"/>
+            </manifest>
+        </jar>
+    </target>
 	
 	<!-- Generate javadocs for current project into docs dir -->
 	<target name="doc" depends="init" description="generate documentation">
@@ -66,6 +79,7 @@
 	<target name="clean" description="tidy up the workspace">
         <delete dir="${build.dir}"/>
         <delete dir="${doc.dir}"/>
+        <delete dir="${jar.dir}"/>
 	</target>
 
 </project>

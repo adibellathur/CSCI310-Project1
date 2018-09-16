@@ -46,7 +46,7 @@ public class TestFlightMatrix {
     @Test
     public void getStartingNode() {
         FlightMatrix matrix = new FlightMatrix(START);
-        assertEquals(START, matrix.getStartingNode());
+        assertEquals(START, matrix.getStartingCity());
     }
 
 }

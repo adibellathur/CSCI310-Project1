@@ -5,20 +5,33 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Set;
 
+/**
+ * FlightMap finds all paths from the starting city to all other cities as specified in a
+ * <a href="./FlightMatrix.html">FlightMatrix</a>
+ */
 public class FlightMap {
 
     private FlightMatrix matrix;
 
+    /**
+     * Constructor that takes <a href="./FlightMatrix.html">FlightMatrix</a> containing all flights to be searched.
+     * @param matrix containing all flights from city to city and starting city to search from
+     */
     public FlightMap(FlightMatrix matrix) {
         this.matrix = matrix;
     }
 
+    /**
+     * uses BFS to turn existing <a href="./FlightMatrix.html">FlightMatrix</a> into a table of all Paths
+     * from the starting city to all other cities
+     * @return String of a formatted table to be written to an output file or printed to console.
+     */
     public String findAllPaths() {
         Queue<CityNode> queue = new LinkedList<>();
         Set<String> visited = new HashSet<>();
         String output = "Destination\t\tFlight Route\t\tCost\n";
 
-        queue.add(new CityNode(matrix.getStartingNode(), 0, null));
+        queue.add(new CityNode(matrix.getStartingCity(), 0, null));
 
         while(!queue.isEmpty()) {
             CityNode currCity = queue.poll();
@@ -34,7 +47,7 @@ public class FlightMap {
         return output;
     }
 
-    public String getPrevCityPath(CityNode node) {
+    private String getPrevCityPath(CityNode node) {
         String cityPath = "";
         while(node != null) {
             cityPath = node.getCity() + "," + cityPath;
@@ -49,21 +62,21 @@ public class FlightMap {
         private int currTotal;
         private CityNode prev;
 
-        public CityNode(String city, int currTotal, CityNode prev) {
+        private CityNode(String city, int currTotal, CityNode prev) {
             this.city = city;
             this.currTotal = currTotal;
             this.prev = prev;
         }
 
-        public String getCity() {
+        private String getCity() {
             return city;
         }
 
-        public int getCurrTotal() {
+        private int getCurrTotal() {
             return currTotal;
         }
 
-        public CityNode getPrev() {
+        private CityNode getPrev() {
             return prev;
         }
     }
