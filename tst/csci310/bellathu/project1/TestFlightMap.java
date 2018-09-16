@@ -18,20 +18,20 @@ public class TestFlightMap {
 
 
     public static final String INITIALTEST_SOLUTION =
-            "Destination\t\tFlight Route\t\tCost\n" +
-            STARTING_NODE + "\t\t\tin\t\t\t0\n";
+            String.format("%-16s%-16s%-16s%n", "Destination", "Flight Route", "Cost") +
+            String.format("%-16s%-16s%-16s%n", STARTING_NODE, STARTING_NODE, 0);
 
     public static final String TWOCITIESTEST_SOLUTION =
-            "Destination\t\tFlight Route\t\tCost\n" +
-            STARTING_NODE + "\t\t\tin\t\t\t0\n" +
-            DEST_1 + "\t\t\t" + DEST_1_HISTORY + "\t\t\t" + DEST_1_PRICE + "\n";
+            String.format("%-16s%-16s%-16s%n", "Destination", "Flight Route", "Cost") +
+            String.format("%-16s%-16s%-16s%n", STARTING_NODE, STARTING_NODE, 0) +
+            String.format("%-16s%-16s%-16s%n", DEST_1, DEST_1_HISTORY, DEST_1_PRICE);
 
     public static final String TEST_INPUT_FILE_SOLUTION =
-            "Destination\t\tFlight Route\t\tCost\n" +
-            "P\t\t\tP\t\t\t0\n" +
-            "R\t\t\tP,R\t\t\t300\n" +
-            "W\t\t\tP,W\t\t\t200\n" +
-            "X\t\t\tP,R,X\t\t\t500\n";
+            String.format("%-16s%-16s%-16s%n", "Destination", "Flight Route", "Cost") +
+            String.format("%-16s%-16s%-16s%n", "P", "P", 0) +
+            String.format("%-16s%-16s%-16s%n", "R", "P,R", 300) +
+            String.format("%-16s%-16s%-16s%n", "W", "P,W", 200) +
+            String.format("%-16s%-16s%-16s%n", "X", "P,R,X", 500);
 
     @Test
     public void mapIniitialTest() {
@@ -49,7 +49,7 @@ public class TestFlightMap {
 
     @Test
     public void mapTestWithTestInputFile() throws IOException {
-        SearchMap sm = new SearchMap(TEST_INPUT_FILE);
+        SearchMap sm = new SearchMap(TEST_INPUT_FILE, "");
         FlightMatrix matrix = sm.readFile();
         FlightMap map = new FlightMap(matrix);
         assertEquals(map.findAllPaths(), TEST_INPUT_FILE_SOLUTION);

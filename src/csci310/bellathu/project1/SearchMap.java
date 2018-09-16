@@ -11,9 +11,11 @@ import java.io.*;
 public class SearchMap {
 
     private String inputFile;
+    private String outputFile;
 
-    public SearchMap(String inputFile) {
+    public SearchMap(String inputFile, String outputFile) {
         this.inputFile = inputFile;
+        this.outputFile = outputFile;
     }
 
     /**
@@ -47,18 +49,24 @@ public class SearchMap {
         }
     }
 
+    private void writeToFile(String input)  throws IOException {
+        PrintWriter writer = new PrintWriter(outputFile, "UTF-8");
+        writer.print(input);
+        writer.close();
+    }
+
     public static void main(String[] args) {
 
-        SearchMap program = new SearchMap(args[0]);
+        SearchMap program = new SearchMap(args[0], args[1]);
         FlightMatrix matrix;
         FlightMap map;
 
         try {
             matrix = program.readFile();
             map = new FlightMap(matrix);
-            System.out.println(map.findAllPaths());
+            program.writeToFile(map.findAllPaths());
         } catch (IOException | NumberFormatException e) {
-            System.out.println("Invalid input file. Please use valid inputfile.txt");
+            System.out.println("Invalid input or output file");
             e.printStackTrace();
         }
     }

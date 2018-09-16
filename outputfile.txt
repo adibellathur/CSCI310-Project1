@@ -1,0 +1,9 @@
+Destination     Flight Route    Cost            
+P               P               0               
+R               P,R             300             
+W               P,W             200             
+X               P,R,X           500             
+S               P,W,S           450             
+Y               P,W,Y           700             
+T               P,W,S,T         750             
+Z               P,W,Y,Z         1150            

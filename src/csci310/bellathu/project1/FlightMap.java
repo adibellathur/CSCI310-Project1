@@ -29,14 +29,17 @@ public class FlightMap {
     public String findAllPaths() {
         Queue<CityNode> queue = new LinkedList<>();
         Set<String> visited = new HashSet<>();
-        String output = "Destination\t\tFlight Route\t\tCost\n";
+        String output = String.format("%-16s%-16s%-16s%n", "Destination", "Flight Route", "Cost");
 
         queue.add(new CityNode(matrix.getStartingCity(), 0, null));
 
         while(!queue.isEmpty()) {
             CityNode currCity = queue.poll();
             visited.add(currCity.getCity());
-            output += currCity.getCity()+"\t\t\t"+getPrevCityPath(currCity)+"\t\t\t"+currCity.getCurrTotal()+"\n";
+            output += String.format("%-16s%-16s%-16s%n",
+                    currCity.getCity(),
+                    getPrevCityPath(currCity),
+                    currCity.getCurrTotal());
             matrix.getAdjacentCities(currCity.getCity()).entrySet().stream()
                     .filter(entry -> !visited.contains(entry.getKey()))
                     .forEach(entry -> queue.add(

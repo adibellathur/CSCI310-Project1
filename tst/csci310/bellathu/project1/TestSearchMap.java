@@ -21,26 +21,26 @@ public class TestSearchMap {
 
     @Test
     public void TestReadFileWithRealInput() throws IOException {
-        SearchMap map = new SearchMap(TEST_INPUT_FILE);
+        SearchMap map = new SearchMap(TEST_INPUT_FILE, "");
         FlightMatrix matrix = map.readFile();
         assertEquals(TEST_INPUT_MATRIX_STRING,matrix.toString());
     }
 
     @Test(expected = IOException.class)
     public void TestReadFileWithTooLongLineInput() throws IOException {
-        SearchMap map = new SearchMap(TEST_INPUT_TOO_MANY_LINES_FILE);
+        SearchMap map = new SearchMap(TEST_INPUT_TOO_MANY_LINES_FILE, "");
         map.readFile();
     }
 
     @Test(expected = NumberFormatException.class)
     public void TestReadFileWithInvalidPriceInput() throws IOException {
-        SearchMap map = new SearchMap(TEST_INPUT_INVALID_PRICE_FILE);
+        SearchMap map = new SearchMap(TEST_INPUT_INVALID_PRICE_FILE, "");
         map.readFile();
     }
 
     @Test(expected = IOException.class)
     public void TestReadFileWithNoInput() throws IOException {
-        SearchMap map = new SearchMap(NOT_TEST_INPUT_FILE);
+        SearchMap map = new SearchMap(NOT_TEST_INPUT_FILE, "");
         map.readFile();
     }
 
