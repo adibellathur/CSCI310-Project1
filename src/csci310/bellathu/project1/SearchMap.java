@@ -49,18 +49,25 @@ public class SearchMap {
         }
     }
 
-    private void writeToFile(String input)  throws IOException {
+    /**
+     * Takes a string and writes it to the output file as specified in the constructor
+     * @param input String to be written to the file
+     * @throws IOException
+     */
+    public void writeToFile(String input)  throws IOException {
         PrintWriter writer = new PrintWriter(outputFile, "UTF-8");
         writer.print(input);
         writer.close();
     }
 
     public static void main(String[] args) {
-
+        if(args.length < 2) {
+            System.out.println("Please specify input and output files");
+            return;
+        }
         SearchMap program = new SearchMap(args[0], args[1]);
         FlightMatrix matrix;
         FlightMap map;
-
         try {
             matrix = program.readFile();
             map = new FlightMap(matrix);

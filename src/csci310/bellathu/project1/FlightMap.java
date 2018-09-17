@@ -8,6 +8,8 @@ import java.util.Set;
 /**
  * FlightMap finds all paths from the starting city to all other cities as specified in a
  * <a href="./FlightMatrix.html">FlightMatrix</a>
+ *
+ * @author Adithya Bellathur
  */
 public class FlightMap {
 
@@ -22,8 +24,9 @@ public class FlightMap {
     }
 
     /**
-     * uses BFS to turn existing <a href="./FlightMatrix.html">FlightMatrix</a> into a table of all Paths
-     * from the starting city to all other cities
+     * uses BFS to turn existing <a href="./FlightMatrix.html">FlightMatrix</a> into a table of paths
+     * to all cities from the starting city to all other cities, along with History of path and total
+     * cost of flight.
      * @return String of a formatted table to be written to an output file or printed to console.
      */
     public String findAllPaths() {
@@ -43,9 +46,9 @@ public class FlightMap {
             matrix.getAdjacentCities(currCity.getCity()).entrySet().stream()
                     .filter(entry -> !visited.contains(entry.getKey()))
                     .forEach(entry -> queue.add(
-                                new CityNode(entry.getKey(), currCity.getCurrTotal() + entry.getValue(), currCity)
-                            )
-                    );
+                                new CityNode(entry.getKey(),
+                                        currCity.getCurrTotal() + entry.getValue(),
+                                        currCity)));
         }
         return output;
     }

@@ -6,6 +6,8 @@ import java.util.Map;
 /**
  * The FlightMatrix class stores flight paths and the starting city. It also has helper
  * functions to aid in the finding of all paths from the starting city
+  *
+ * @author Adithya Bellathur
  */
 public class FlightMatrix {
 

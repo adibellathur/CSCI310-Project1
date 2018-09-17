@@ -16,7 +16,6 @@ public class TestFlightMap {
 
     public static final String TEST_INPUT_FILE = "tst/testinputfile.txt";
 
-
     public static final String INITIALTEST_SOLUTION =
             String.format("%-16s%-16s%-16s%n", "Destination", "Flight Route", "Cost") +
             String.format("%-16s%-16s%-16s%n", STARTING_NODE, STARTING_NODE, 0);

@@ -33,7 +33,7 @@
 	</target>
 
 	<!-- Run the compiled java code in the build/src dir -->
-	<target name="run" depends="test, jar, doc" description="generate documentation">
+	<target name="run" depends="test, dist, doc" description="generate documentation">
 		<java classname="csci310.bellathu.project1.SearchMap">
             <classpath>
                 <path refid="classpath"/>
@@ -62,8 +62,8 @@
         </junit>
     </target>
 
-    <target name="jar" depends="compile">
-        <jar destfile="${jar.dir}/HelloWorld.jar" basedir="${build.dir}/src">
+    <target name="dist" depends="compile">
+        <jar destfile="${jar.dir}/SearchMap.jar" basedir="${build.dir}/src">
             <manifest>
                 <attribute name="Main-Class" value="csci310.bellathu.project1.SearchMap"/>
             </manifest>
