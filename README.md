@@ -1,6 +1,6 @@
-#Project 1
+# Project 1 #
 
-File Directory Description:
+**File Directory Description:**
 * src/ contains all the \*.java source files for running the SearchMap Program
 * tst/ contains all the JUnit tests for the src \*.java files
 * lib/ contains JUnit .jar files
@@ -11,7 +11,7 @@ File Directory Description:
 	* dist/ contains the \*.jar files
 	* doc/ contains the javadocs
 
-Ant Commands:
+**Ant Commands:**
 * everything works as specified in the instructions (`init`, `clean`, `compile`, `test`, `dist`, `doc`) 
 * Running `ant run` or just `ant` will run the entire program as follows:
 	* `ant init`
@@ -20,3 +20,4 @@ Ant Commands:
 	* `ant test`
 	* `ant doc`
 	* runs the following command: `java SearchMap [...]/Project1/inputfile.txt [...]/Project1/outputfile.txt`
+		* Note: the SearchMap program can take any input file, this command was just to make testing easier 
