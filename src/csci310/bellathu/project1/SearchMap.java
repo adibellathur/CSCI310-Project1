@@ -31,6 +31,18 @@ public class SearchMap {
         return createMatrix(reader);
     }
 
+    /**
+     * Takes a string and writes it to the output file as specified in the constructor
+     * @param input String to be written to the file
+     * @throws IOException given output text file is not able to be read. Likely causes: missing file,
+     * improper formatting.
+     */
+    public void writeToFile(String input)  throws IOException {
+        PrintWriter writer = new PrintWriter(outputFile, "UTF-8");
+        writer.print(input);
+        writer.close();
+    }
+
     private FlightMatrix createMatrix(BufferedReader reader) throws IOException {
         String startingNode = reader.readLine();
         FlightMatrix matrix = new FlightMatrix(startingNode);
@@ -49,17 +61,6 @@ public class SearchMap {
         }
     }
 
-    /**
-     * Takes a string and writes it to the output file as specified in the constructor
-     * @param input String to be written to the file
-     * @throws IOException
-     */
-    public void writeToFile(String input)  throws IOException {
-        PrintWriter writer = new PrintWriter(outputFile, "UTF-8");
-        writer.print(input);
-        writer.close();
-    }
-
     public static void main(String[] args) {
         if(args.length < 2) {
             System.out.println("Please specify input and output files");
@@ -71,7 +72,9 @@ public class SearchMap {
         try {
             matrix = program.readFile();
             map = new FlightMap(matrix);
-            program.writeToFile(map.findAllPaths());
+            String table = map.findAllPaths();
+            program.writeToFile(table);
+            System.out.println(table);
         } catch (IOException | NumberFormatException e) {
             System.out.println("Invalid input or output file");
             e.printStackTrace();
