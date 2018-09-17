@@ -1,4 +1,5 @@
-#Project 1#
+#Project 1
+
 File Directory Description:
 * src/ contains all the \*.java source files for running the SearchMap Program
 * tst/ contains all the JUnit tests for the src \*.java files
